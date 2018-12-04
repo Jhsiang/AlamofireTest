@@ -29,6 +29,7 @@ class httpPostFormData{
     func postData(urlStr:String, dic:[String:Any]){
         requestWithFormData(urlString: urlStr, parameters: dic) { (data) in
             let myJson = JSON(data)
+            self.delegate?.httpPostSuccess(isSuccess: true)
             self.delegate?.httpPostResponse(json: myJson)
         }
     }

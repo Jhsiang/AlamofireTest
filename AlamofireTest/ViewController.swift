@@ -27,9 +27,49 @@ class ViewController: UIViewController,FormDataDelegate {
         let urlStr = "http://httpbin.org/post"
         let myDic = postQueryForm(IMEI: "123456789012345")
 
-        FormData.share.delegate = self
-        FormData.share.postFormData(urlStr: urlStr, dic: myDic)
+        //FormData.share.delegate = self
+        //FormData.share.postFormData(urlStr: urlStr, dic: myDic)
+        print("1")
+        postFormData2(urlStr: urlStr, dic: myDic) { (isSuccess) in
+            if isSuccess{
+                print("yeah success")
+            }else{
+                print("fail fail fail important so say 3 times")
+            }
+            print("3")
+        }
+        print("2")
+    }
 
+    func postFormData2(urlStr:String,dic:[String:Any], completion: @escaping ((Bool) -> Void)){
+        if let myURL = URL(string: urlStr){
+
+            Alamofire.upload(multipartFormData: { (myMFD) in
+                for (key,value) in dic{
+                    if let myData = "\(JSON(value))".data(using: .utf8){
+                        myMFD.append(myData, withName: key)
+                    }
+                }
+            }, to: myURL) { (myResult) in
+                switch myResult{
+                case .success(request: let myUpload, streamingFromDisk: _, streamFileURL: _):
+                    myUpload.responseJSON(completionHandler: { (response2) in
+                        if response2.result.isSuccess{
+                            completion(true)
+                            print("res = \(JSON(response2.result.value))")
+                        }else{
+                            completion(false)
+                            print("oh no")
+                        }
+                    })
+                case .failure:
+                    completion(false)
+                    break
+                }
+            }
+        }else{
+            completion(false)
+        }
     }
 
     func postFormData(urlStr:String,dic:[String:Any]) -> Bool{

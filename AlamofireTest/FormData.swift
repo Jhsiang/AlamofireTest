@@ -46,4 +46,9 @@ class FormData{
             self.delegate?.postMethodIsSuccess(isSucces: false, errorStr: "url fail")
         }
     }
+
+    func getMethod(urlStr:String){
+        
+    }
+
 }
