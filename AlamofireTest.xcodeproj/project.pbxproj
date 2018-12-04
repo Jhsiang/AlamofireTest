@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F02C63321B623E5001DC522 /* FormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F02C63221B623E5001DC522 /* FormData.swift */; };
+		0F02C63521B64BCF001DC522 /* httpPostFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F02C63421B64BCF001DC522 /* httpPostFormData.swift */; };
 		0F7F3F5821AE61BE00134D24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F3F5721AE61BE00134D24 /* AppDelegate.swift */; };
 		0F7F3F5A21AE61BE00134D24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F3F5921AE61BE00134D24 /* ViewController.swift */; };
 		0F7F3F5D21AE61BE00134D24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F7F3F5B21AE61BE00134D24 /* Main.storyboard */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F02C63221B623E5001DC522 /* FormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormData.swift; sourceTree = "<group>"; };
+		0F02C63421B64BCF001DC522 /* httpPostFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = httpPostFormData.swift; sourceTree = "<group>"; };
 		0F7F3F5421AE61BE00134D24 /* AlamofireTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlamofireTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7F3F5721AE61BE00134D24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F7F3F5921AE61BE00134D24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,7 +122,9 @@
 			children = (
 				0F7F3F5721AE61BE00134D24 /* AppDelegate.swift */,
 				0F7F3F5921AE61BE00134D24 /* ViewController.swift */,
+				0F02C63221B623E5001DC522 /* FormData.swift */,
 				0FC9051B21B5120700BA936F /* httpViewController.swift */,
+				0F02C63421B64BCF001DC522 /* httpPostFormData.swift */,
 				0F7F3F5B21AE61BE00134D24 /* Main.storyboard */,
 				0F7F3F5E21AE61C000134D24 /* Assets.xcassets */,
 				0F7F3F6021AE61C000134D24 /* LaunchScreen.storyboard */,
@@ -381,8 +387,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FC9051C21B5120700BA936F /* httpViewController.swift in Sources */,
+				0F02C63521B64BCF001DC522 /* httpPostFormData.swift in Sources */,
 				0F7F3F5A21AE61BE00134D24 /* ViewController.swift in Sources */,
 				0F7F3F5821AE61BE00134D24 /* AppDelegate.swift in Sources */,
+				0F02C63321B623E5001DC522 /* FormData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

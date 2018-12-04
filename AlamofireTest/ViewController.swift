@@ -10,45 +10,31 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,FormDataDelegate {
+    func postMethodIsSuccess(isSucces: Bool, errorStr: String) {
+        if isSucces == false{
+            print("error = ",errorStr)
+        }
+    }
+
+    func postMethodResponseJson(json: JSON) {
+        print("response = ",json)
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let urlStr = "http://httpbin.org/post"
         let myDic = postQueryForm(IMEI: "123456789012345")
 
-        if let myURL = URL(string: urlStr){
+        FormData.share.delegate = self
+        FormData.share.postFormData(urlStr: urlStr, dic: myDic)
 
-            Alamofire.upload(multipartFormData: { (multipleFD) in
-                for (key,value) in myDic{
-                    multipleFD.append("\(JSON(value))".data(using: String.Encoding.utf8)!, withName: key)
-                }
-            }, to: myURL) { (myResult) in
-                switch myResult{
-                case .success(request: let myUpload,_,_):
-                    myUpload.responseJSON(completionHandler: { (response2) in
-                        if response2.result.isSuccess{
-                            print("res = \(JSON(response2.result.value))")
-                        }else{
-                            print("oh no")
-
-                        }
-                    })
-                    print("YES")
-                    break
-                case .failure:
-                    print("NO")
-                    break
-                }
-            }
-        }else{
-            print("fail")
-        }
-        
     }
 
     func postFormData(urlStr:String,dic:[String:Any]) -> Bool{
         if let myURL = URL(string: urlStr){
+
             Alamofire.upload(multipartFormData: { (myMFD) in
                 for (key,value) in dic{
                     if let myData = "\(JSON(value))".data(using: .utf8){
@@ -70,10 +56,11 @@ class ViewController: UIViewController {
                     break
                 }
             }
+
+            return true
         }else{
             return false
         }
-        return false
     }
 
     func postQueryForm(IMEI:String) -> [String:Any]{
