@@ -24,11 +24,16 @@ class ViewController: UIViewController,FormDataDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        FormData.share.delegate = self
+
+    }
+
+    func postDataExam(){
         let urlStr = "http://httpbin.org/post"
         let myDic = postQueryForm(IMEI: "123456789012345")
 
-        //FormData.share.delegate = self
-        //FormData.share.postFormData(urlStr: urlStr, dic: myDic)
+        FormData.share.postFormData(urlStr: urlStr, dic: myDic)
         print("1")
         postFormData2(urlStr: urlStr, dic: myDic) { (isSuccess) in
             if isSuccess{
@@ -39,6 +44,16 @@ class ViewController: UIViewController,FormDataDelegate {
             print("3")
         }
         print("2")
+    }
+
+    func getGoogleRoute(){
+        FormData.share.getGoogleRoute { (isSuccess) in
+            if isSuccess{
+                print("yeah ok")
+            }else{
+                print("fail la ")
+            }
+        }
     }
 
     func postFormData2(urlStr:String,dic:[String:Any], completion: @escaping ((Bool) -> Void)){

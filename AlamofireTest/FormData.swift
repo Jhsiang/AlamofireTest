@@ -47,8 +47,30 @@ class FormData{
         }
     }
 
-    func getMethod(urlStr:String){
-        
+    func getGoogleRoute(completion: @escaping ((Bool) -> Void)){
+        let originLat = 25.048292
+        let originLng = 121.518788
+        let destinationLat = 25.058786
+        let destinationLng = 121.562291
+        if let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?"
+            + "origin=\(originLat),\(originLng)"
+            + "&destination=\(destinationLat),\(destinationLng)"
+            + "&sensor=false"
+            + "&units=metric"
+            + "&mode=driving"
+            + "&key=AIzaSyAXkbnjM_z-jY48BoOne_Z43jug7uwIVYE"){
+            Alamofire.request(url).responseJSON { (dataResponse) in
+                if dataResponse.result.isSuccess{
+                    completion(true)
+                    let myJson = JSON(dataResponse.result.value)
+                    print("my Json = ",myJson)
+                }else{
+                    completion(false)
+                }
+            }
+        }else{
+            completion(false)
+        }
     }
 
 }
